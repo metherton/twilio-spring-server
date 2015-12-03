@@ -19,7 +19,7 @@ public class TwimlResponseBuilder {
         final Say sayEspanol = new Say("Para Espanol oprime el uno.");
         sayEspanol.setLanguage("es");
 
-        final Say sayEnglish = new Say("For English, please hold or press two.");
+        final Say sayEnglish = new Say("For English please hold or press two.");
         sayEnglish.setLanguage("en");
 
         try {
