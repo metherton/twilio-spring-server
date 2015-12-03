@@ -23,47 +23,53 @@ import java.util.UUID;
 @EnableRedisHttpSession
 public class TwilioSpringServerApplication {
 
-    @RequestMapping("/")
-    public Map<String,Object> home() {
-        Map<String,Object> model = new HashMap<String,Object>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("content", "Hello World");
-        return model;
-    }
-
-    @RequestMapping(path="/routecall", method=RequestMethod.GET)
-    public @ResponseBody TwiMLResponse routeCall(HttpServletRequest request, HttpServletResponse response) {
-
-        TwiMLResponse twiml = new TwiMLResponse();
-        final Gather gather = new Gather();
-        gather.setNumDigits(1);
-        gather.setTimeout(5);
-        gather.setAction("enqueue_call");
-
-        final Say sayEspanol = new Say("Para Espanol oprime el uno.");
-        sayEspanol.setLanguage("es");
-
-        final Say sayEnglish = new Say("For English, please hold or press two.");
-        sayEnglish.setLanguage("en");
-
-        try {
-            gather.append(sayEspanol);
-            gather.append(sayEnglish);
-            twiml.append(gather);
-        } catch (final TwiMLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return twiml;
-    }
+//    @RequestMapping("/")
+//    public Map<String,Object> home() {
+//        Map<String,Object> model = new HashMap<String,Object>();
+//        model.put("id", UUID.randomUUID().toString());
+//        model.put("content", "Hello World");
+//        return model;
+//    }
+//
+//    @RequestMapping(path="/routecall", method=RequestMethod.GET)
+//    public @ResponseBody TwiMLResponse routeCall(HttpServletRequest request, HttpServletResponse response) {
+//
+//        TwiMLResponse twiml = new TwiMLResponse();
+//        final Gather gather = new Gather();
+//        gather.setNumDigits(1);
+//        gather.setTimeout(5);
+//        gather.setAction("enqueue_call");
+//
+//        final Say sayEspanol = new Say("Para Espanol oprime el uno.");
+//        sayEspanol.setLanguage("es");
+//
+//        final Say sayEnglish = new Say("For English, please hold or press two.");
+//        sayEnglish.setLanguage("en");
+//
+//        try {
+//            gather.append(sayEspanol);
+//            gather.append(sayEnglish);
+//            twiml.append(gather);
+//        } catch (final TwiMLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        return twiml;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(TwilioSpringServerApplication.class, args);
     }
 
+//    @Bean
+//    HeaderHttpSessionStrategy sessionStrategy() {
+//        return new HeaderHttpSessionStrategy();
+//    }
+
     @Bean
-    HeaderHttpSessionStrategy sessionStrategy() {
-        return new HeaderHttpSessionStrategy();
+    TwimlResponseBuilder twimlResponseBuilder() {
+        return new TwimlResponseBuilder();
     }
+
 }
