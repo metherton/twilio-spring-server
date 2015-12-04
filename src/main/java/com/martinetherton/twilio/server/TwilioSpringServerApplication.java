@@ -8,9 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +24,12 @@ import java.util.UUID;
 @SpringBootApplication
 @RestController
 @EnableRedisHttpSession
-public class TwilioSpringServerApplication {
+public class TwilioSpringServerApplication extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.defaultContentType(MediaType.APPLICATION_XML);
+    }
 
 //    @RequestMapping("/")
 //    public Map<String,Object> home() {
@@ -31,7 +39,7 @@ public class TwilioSpringServerApplication {
 //        return model;
 //    }
 //
-//    @RequestMapping(path="/routecall", method=RequestMethod.GET)
+//    @RequestMapping(path="/incoming_call", method=RequestMethod.GET)
 //    public @ResponseBody TwiMLResponse routeCall(HttpServletRequest request, HttpServletResponse response) {
 //
 //        TwiMLResponse twiml = new TwiMLResponse();
