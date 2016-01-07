@@ -21,10 +21,24 @@ public class TaskRouterController {
         this.twimlResponseBuilder = twimlResponseBuilder;
     }
 
-    @RequestMapping(path="incoming_call",method=RequestMethod.GET, produces="application/xml")
+    @RequestMapping(path="/incoming_call",method=RequestMethod.GET, produces="application/xml")
+//    @RequestMapping(path="/incoming_call",method=RequestMethod.POST)
     public String incomingCall() throws IOException, TwiMLException {
         return twimlResponseBuilder.incomingCall();
     }
+
+//    @RequestMapping(path="incoming_call/enqueue_call",method=RequestMethod.GET, produces="application/xml")
+//    public String incomingCall1() throws IOException, TwiMLException {
+//        return twimlResponseBuilder.enqueueCall();
+//    }
+//
+//    @RequestMapping(path="incoming_call/enqueue_call",method=RequestMethod.POST, produces="application/xml")
+//    public String incomingCallPosst2() throws IOException, TwiMLException {
+//        return twimlResponseBuilder.enqueueCall();
+//    }
+
+
+
 
     @RequestMapping(path="enqueue_call",method=RequestMethod.POST, produces="application/xml")
     public String enqueueCall() throws IOException, TwiMLException {
