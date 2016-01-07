@@ -39,4 +39,8 @@ public class TwimlResponseBuilder {
 
         return twiml.toXML();
     }
+
+    public String assignCall() {
+        return null;
+    }
 }

@@ -22,7 +22,14 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         webSecurity
                 .ignoring()
                 // All of Spring Security will ignore the requests
-                .antMatchers(HttpMethod.POST, "/enqueue_call");
+                .antMatchers(HttpMethod.POST, "/assignments.json")
+        ;
+
+        webSecurity
+                .ignoring()
+                // All of Spring Security will ignore the requests
+                .antMatchers(HttpMethod.POST, "/enqueue_call")
+        ;
     }
 
     @Override
