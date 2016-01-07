@@ -1,6 +1,7 @@
 package com.martinetherton.twilio.server;
 
 import com.twilio.sdk.verbs.TwiMLException;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by martin on 02/12/15.
@@ -34,9 +37,16 @@ public class TaskRouterController {
         return twimlResponseBuilder.enqueueCall();
     }
 
-    @RequestMapping(path="assignments.json",method=RequestMethod.POST)
+    @RequestMapping(path="assignment_callback.json",method=RequestMethod.POST)
     public @ResponseBody String assignments() throws IOException, TwiMLException {
-        return "{\"instruction\":\"accept\"}";
+        final Map<String, String> dequeueInstruction = new HashMap<String, String>();
+        dequeueInstruction.put("instruction", "dequeue");
+        dequeueInstruction.put("from", "+31858889347");
+        dequeueInstruction.put("post_work_activity_sid", "WAc8db9ecd2be972674749569394841e54");
+
+        return JSONObject.toJSONString(dequeueInstruction);
+
+   //     return "{\"instruction\":\"accept\"}";
     }
 
 }
