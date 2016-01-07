@@ -27,16 +27,20 @@ public class TwimlResponseBuilder {
         return twiml.toXML();
     }
 
-    public String enqueueCall() throws TwiMLException {
+    public String enqueueCall() {
         final TwiMLResponse twiml = new TwiMLResponse();
         final Enqueue enqueue = new Enqueue();
         enqueue.setWorkflowSid("WW50d2a142e9a85d125c49d3bd8789a9da");
 
         final Task task = new Task("{\"selected_language\":\"es\"}");
 
-        enqueue.append(task);
-        twiml.append(enqueue);
-
+        try {
+            enqueue.append(task);
+            twiml.append(enqueue);
+        } catch (final TwiMLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return twiml.toXML();
     }
 
