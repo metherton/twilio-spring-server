@@ -37,10 +37,7 @@ public class TaskRouterController {
 //        return twimlResponseBuilder.enqueueCall();
 //    }
 
-
-
-
-    @RequestMapping(path="enqueue_call",method=RequestMethod.POST, produces="application/xml")
+    @RequestMapping(path="/enqueue_call",method=RequestMethod.POST, produces="application/xml")
     public String enqueueCall() throws IOException, TwiMLException {
         return twimlResponseBuilder.enqueueCall();
     }
