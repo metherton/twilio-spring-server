@@ -34,7 +34,7 @@ public class TaskRouterController {
         return twimlResponseBuilder.enqueueCall();
     }
 
-    @RequestMapping(path="assignments.json",method=RequestMethod.POST)
+    @RequestMapping(path="assignments",method=RequestMethod.POST)
     public @ResponseBody String assignments() throws IOException, TwiMLException {
         return "{}";
     }
