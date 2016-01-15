@@ -43,10 +43,7 @@ public class TaskRouterController {
         dequeueInstruction.put("instruction", "dequeue");
         dequeueInstruction.put("from", "+31858889347");
         dequeueInstruction.put("post_work_activity_sid", "WAc8db9ecd2be972674749569394841e54");
-
         return JSONObject.toJSONString(dequeueInstruction);
-
-   //     return "{\"instruction\":\"accept\"}";
     }
 
 }

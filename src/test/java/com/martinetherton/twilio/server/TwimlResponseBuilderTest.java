@@ -11,7 +11,6 @@ import static org.hamcrest.core.Is.is;
  */
 public class TwimlResponseBuilderTest {
 
-
     @Test
     public void testBuilder() throws TwiMLException {
         TwimlResponseBuilder twimlResponseBuilder = new TwimlResponseBuilder();
